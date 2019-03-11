@@ -1,4 +1,4 @@
-package interfaz;
+package application;
 
 public class IndexController {
 	
