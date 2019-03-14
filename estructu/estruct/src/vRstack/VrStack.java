@@ -1,17 +1,15 @@
-package model;
+package vRstack;
 
-import vRhashTable.ElementHash;
 
-public class MarketBasket<E> implements IStack<E>,IOperations<E>{
+public class VrStack<E> implements IvrStack<E> {
 	
-	private Node<E> top;
+	private VrNode<E> top;
 	private int size;
-	private ElementHash<Integer> d;
 	
-	public MarketBasket() {
+	public VrStack() {
 		top=null;
 	}
-	
+
 	@Override
 	public int size() {
 		return size;
@@ -47,7 +45,7 @@ public class MarketBasket<E> implements IStack<E>,IOperations<E>{
 
 	@Override
 	public void push(E element) {
-		Node<E> newElement=new Node<E>(element,top);
+		VrNode<E> newElement=new VrNode<E>(element,top);
 		if(empty()) 
 			top=newElement;
 		else {
