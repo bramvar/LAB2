@@ -5,10 +5,11 @@ public class Book {
 	private int price;
 	private int amount;
 	private char bookShelf;
-	 
-	
-	public Book() {
-		
+
+	public Book(int price, int amount, char bookShelf) {
+		this.price = price;
+		this.amount = amount;
+		this.bookShelf = bookShelf;
 	}
 
 	public int getPrice() {

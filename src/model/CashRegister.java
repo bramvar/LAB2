@@ -1,29 +1,28 @@
 package model;
 
+import vRqueue.VrQueue;
+import vRstack.VrStack;
+
 public class CashRegister {
 	
-	private int price;
-	private int amount;
-	private char bookShelf;
+	private boolean isBusy;
 	 
 	public CashRegister() {
-		
+		isBusy=false;
 	}
 
-	public int getPrice() {
-		return price;
+	public double calculateIndividualSale(Client client) {
+		double sale=0;
+		isBusy=true;
+		VrStack<Book> clientsBooks=client.getCollectedBooks();
+		do {
+			Book b=clientsBooks.pop();
+			client.getPurchasedBooks().push(b);
+			sale+=b.getPrice();
+		}while(!clientsBooks.empty());
+		isBusy=true;
+		return sale;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
+	
 }
