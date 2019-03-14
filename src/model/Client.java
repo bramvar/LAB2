@@ -5,14 +5,14 @@ import vRstack.VrStack;
 public class Client {
 	
 	private int id;
-	private String[] isbnList;
+	private int[] isbnList;
 	private VrStack<Book> collectedBooks;
 	private VrStack<Book> purchasedBooks;
 	private int spentMoney;
 	private int time;
 
 	
-	public Client(int id,String[] isbnList) {
+	public Client(int id,int[] isbnList) {
 		this.id=id;
 		this.isbnList=isbnList;
 		time=0;
@@ -29,11 +29,11 @@ public class Client {
 		this.id = id;
 	}
 
-	public String[] getIsbnList() {
+	public int[] getIsbnList() {
 		return isbnList;
 	}
 
-	public void setIsbnList(String isbnList[]) {
+	public void setIsbnList(int[] isbnList) {
 		this.isbnList = isbnList;
 	}
 	

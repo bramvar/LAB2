@@ -3,7 +3,7 @@ package model;
 import vRhashTable.VrHashTable;
 import vRqueue.VrQueue;
 
-public class Library {
+public class BookStore {
 	
 	private BookShelf bookShelf1;
 	private VrQueue<Client> clients;
@@ -13,10 +13,15 @@ public class Library {
 	private int booksAmount;
 	private int cashRegisters;
 	
-	public Library(int booksAmount, int cashRegisters) {
+	public BookStore(int booksAmount, int cashRegisters) {
 		this.booksAmount=booksAmount;
 		this.cashRegisters=cashRegisters;
-		
 	}
+	
+	public void registerClient(int id, int[] isbnList) {
+		clients.offer(new Client(id,isbnList));
+	}
+	
+	
 
 }
