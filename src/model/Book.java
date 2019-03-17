@@ -13,6 +13,10 @@ public class Book {
 		this.bookShelf = bookShelf;
 	}
 	
+	public void reduceAmount() {
+		amount--;
+	}
+	
 	public char getBookShelf() {
 		return bookShelf;
 	}

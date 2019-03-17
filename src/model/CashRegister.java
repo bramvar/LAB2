@@ -19,8 +19,10 @@ public class CashRegister {
 			Book b=clientsBooks.pop();
 			client.getPurchasedBooks().push(b);
 			sale+=b.getPrice();
+			
 		}while(!clientsBooks.empty());
-		isBusy=true;
+		client.setSpentMoney(sale);
+		isBusy=false;
 		return sale;
 	}
 
