@@ -2,7 +2,7 @@ package model;
 
 import vRhashTable.VrHashTable;
 
-public class BookShelf {
+public class BookShelf{
 	
 	private VrHashTable<Book> books;
 	private int booksAmount;

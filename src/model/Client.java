@@ -10,15 +10,23 @@ public class Client {
 	private VrStack<Book> purchasedBooks;
 	private int spentMoney;
 	private int time;
-
 	
-	public Client(int id,int[] isbnList) {
+	public Client(int id,int[] isbnList, int time) {
 		this.id=id;
 		this.isbnList=isbnList;
-		time=0;
+		this.time=time;
 		spentMoney=0;
 		collectedBooks=new VrStack<Book>();
 		purchasedBooks=new VrStack<Book>();
+	}
+	
+	public void takeBooks(BookShelf b) {
+		if(isbnList!=null) {
+			for(int i=0;i<isbnList.length;i++) {
+				collectedBooks.push(b.searchBook(isbnList[i]));
+				time++;
+			}
+		}
 	}
 
 	public int getId() {
@@ -68,7 +76,4 @@ public class Client {
 	public void setSpentMoney(int spentMoney) {
 		this.spentMoney = spentMoney;
 	}
-	
-	
-
 }
