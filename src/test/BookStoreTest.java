@@ -9,6 +9,7 @@ import model.BookStore;
 import model.Client;
 import vRpriorityQueue.VrPriorityQueue;
 import vRqueue.IvrQueue;
+import vRqueue.VrQueue;
 import vRstack.VrStack;
 
 class BookStoreTest {
@@ -54,6 +55,59 @@ class BookStoreTest {
 		bs.registerClient(124,b);
 		bs.registerClient(125,c);
 		bs.registerClient(126,d);
+	}
+	
+	public void scenario3() {
+		Book b0=new Book(17000,3,'A');
+		Book b1=new Book(60000,6,'A');
+		Book b2=new Book(80000,2,'A');
+		Book b3=new Book(70000,6,'A');
+		Book b4=new Book(30000,3,'B');
+		Book b5=new Book(22000,6,'B');
+		Book b6=new Book(28000,6,'B');
+		Book b7=new Book(38000,2,'B');
+		Book b8=new Book(43000,6,'B');
+		Book b9=new Book(40000,2,'C');
+		Book b10=new Book(65000,6,'C');
+		Book b11=new Book(5,5,'A');
+		//Book b4=new Book(7,5,'B');
+	
+		bs=new BookStore(10,3);
+		
+		bs.addBookToLibrary(331, b0);
+		bs.addBookToLibrary(465, b1);
+		bs.addBookToLibrary(612, b2);
+		bs.addBookToLibrary(971, b3);
+		bs.addBookToLibrary(441, b4);
+		bs.addBookToLibrary(112, b5);
+		bs.addBookToLibrary(229, b6);
+		bs.addBookToLibrary(281, b7);
+		bs.addBookToLibrary(333, b8);
+		bs.addBookToLibrary(767, b9);
+		bs.addBookToLibrary(287, b10);
+		
+		
+		String[] a={"287","612"};
+		String[] b={"612", "333", "287", "456"};
+		String[] c={"287"};
+		String[] d={"767", "287", "229", "971"};
+		String[] e={"331"};
+		
+		bs.registerClient(1627,a);
+		bs.registerClient(3456,b);
+		bs.registerClient(3219,c);
+		bs.registerClient(3311,d);
+		bs.registerClient(2100,e);
+	}
+	
+	@Test
+	void startSimulationTest() {
+		scenario3();
+		bs.startSimulation();
+		VrQueue<Client> cq=bs.getClientQueue();
+		assertFalse(cq.empty());
+		System.out.print(cq.poll().getId());
+		
 	}
 	
 	@Test

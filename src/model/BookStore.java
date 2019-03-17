@@ -1,5 +1,8 @@
 package model;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import vRhashTable.VrHashTable;
 import vRpriorityQueue.VrPriorityQueue;
 import vRqueue.IvrQueue;
@@ -14,6 +17,10 @@ public class BookStore {
 	
 	public IvrQueue<Client> getClients() {
 		return clients;
+	}
+	
+	public VrQueue<Client> getClientQueue() {
+		return clientQueue;
 	}
 
 	public void setClients(IvrQueue<Client> clients) {
@@ -53,6 +60,20 @@ public class BookStore {
 	}
 	
 	public void startSimulation() {
+		takeBooksProcess();
+		ExecutorService executor = Executors.newFixedThreadPool(cashRegisters);
+		IvrQueue<Client> aux=clients;
+		while(!aux.empty()) {
+			Client c=aux.poll();
+			Runnable cashRegister=new CashRegister(c);
+			executor.execute(cashRegister);
+			clientQueue.offer(c);
+		}
+		executor.shutdown();
+		while (!executor.isTerminated()) {
+        	// Espero a que terminen de ejecutarse todos los procesos 
+        	// para pasar a las siguientes instrucciones 
+        }
 		
 	}
 	
@@ -109,8 +130,6 @@ public class BookStore {
 				isbnLO[ i ] = menor;
 				isbnLO[ cual ] = temp;
 			}
-			
-			
 		}
 		return isbnLO;
 		
